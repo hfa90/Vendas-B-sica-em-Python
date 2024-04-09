@@ -1,3 +1,4 @@
+# Importando as classes necessárias
 class Cliente:
     def __init__(self, nome):
         self.nome = nome
@@ -9,35 +10,42 @@ class Produto:
 
 class Sistema:
     def __init__(self):
+        # Inicializando listas vazias para armazenar clientes, produtos e vendas
         self.clientes = []
         self.produtos = []
         self.vendas = []
 
     def cadastrar_cliente(self, nome_cliente):
+        # Método para cadastrar um novo cliente
         cliente = Cliente(nome_cliente)
         self.clientes.append(cliente)
 
     def cadastrar_produto(self, nome_produto, preco):
+        # Método para cadastrar um novo produto
         produto = Produto(nome_produto, preco)
         self.produtos.append(produto)
 
     def listar_produtos(self):
+        # Método para listar todos os produtos cadastrados
         print("\n=== LISTA DE PRODUTOS ===")
         for i, produto in enumerate(self.produtos, 1):
             print(f"{i}. Produto: {produto.nome} - Preço: R${produto.preco:.2f}")
 
     def listar_clientes(self):
+        # Método para listar todos os clientes cadastrados
         print("\n=== LISTA DE CLIENTES ===")
         for i, cliente in enumerate(self.clientes, 1):
             print(f"{i}. Nome do Cliente: {cliente.nome}")
 
     def realizar_venda(self, cliente_index, produto_index):
+        # Método para realizar uma venda
         cliente = self.clientes[cliente_index - 1]
         produto = self.produtos[produto_index - 1]
         self.vendas.append((cliente, produto))
         print("Venda Realizada com sucesso!")
 
     def relatorio_ultima_venda(self):
+        # Método para exibir o relatório da última venda realizada
         if self.vendas:
             cliente, produto = self.vendas[-1]
             print("\n=== ÚLTIMA VENDA ===")
@@ -49,9 +57,11 @@ class Sistema:
 
 # Função principal para interação com o usuário
 def main():
+    # Instanciando o objeto do sistema
     sistema = Sistema()
 
     while True:
+        # Exibindo o menu de opções
         print("\n=== MENU ===")
         print("1. Cadastrar Cliente")
         print("2. Cadastrar Produto")
@@ -61,8 +71,10 @@ def main():
         print("6. Relatório Última Venda")
         print("7. Sair")
 
+        # Obtendo a escolha do usuário
         opcao = input("Escolha uma opção: ")
 
+        # Verificando a escolha do usuário e executando a ação correspondente
         if opcao == '1':
             nome_cliente = input("Digite o nome do cliente: ")
             sistema.cadastrar_cliente(nome_cliente)
@@ -91,5 +103,7 @@ def main():
             print("Opção inválida. Tente novamente.")
 
 
+# Verificando se este arquivo está sendo executado diretamente
 if __name__ == "__main__":
+    # Chamando a função principal
     main()
